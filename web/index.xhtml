@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Index page</title>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <!--Import jQuery before materialize.js-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+
+
+    </h:head>
+    <h:body styleClass="cyan lighten-5">
+        <div class="valign-wrapper" id="login-page">
+            <div class="container">
+                <div class="center-align" style="margin-top: 40px">
+                    <div class="row">
+
+                        <div class="col s6 offset-s3">
+                            <div class="card">
+                                <div class="card-content">
+                                    <img class="responsiv-img" src="../resources/images/carasol1.jpg" style="max-width: 380px"/>
+                                    <h3>Admin Login</h3>
+                                    <div class="left-algin">
+                                        <h:form id="login-form">
+                                            <p:growl/>
+                                            <div class="row">
+                                                <div class="col s12 input-field">
+                                                    <h:inputText id="username" value="#{productBean.admin.username}" required="true" requiredMessage="Username is required"/>
+                                                    <h:outputLabel for="usename" value="username"/>
+
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <h:inputSecret id="passworde" value="#{productBean.admin.password}" required="true" requiredMessage="Password is required"/>
+                                                    <h:outputLabel for="passworde" value="passworde"/>
+
+                                                </div>
+                                                <div class="col s12 input-field">
+                                                    <h:commandButton value="Login" styleClass="btn btn-large" action="#{productBean.adminLogin()}" />&nbsp;&nbsp;&nbsp;
+                                                    <h:link outcome="empLogin" value="Employee Login"/>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).on("ready" function() {
+            $('#login-page').css({height:window.innerHeight + 'px'});
+                    });
+        </script>
+    </h:body>
+</html>
+

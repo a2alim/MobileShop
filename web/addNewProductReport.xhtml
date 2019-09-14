@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <h:outputStylesheet  name="./css/bootstrap.min_1.css"/>
+        <h:outputStylesheet  name="./css/font-awesome.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
+        <h:outputStylesheet  name="./css/style.css"/>
+    </h:head>
+
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 header">
+                    <ui:insert name="header">
+                        <div class="row">
+                            <img class="responsiv-img" src="../resources/images/carasol1.jpg" style="width: 100%"/>
+                        </div>
+                    </ui:insert>
+                </div>
+            </div>
+            <!-- start menue secation-->
+            <div class="row">
+                <div class="col-md-12 menue">
+                    <ui:insert name="menue">
+                        <div class="row">
+                            <nav class="navbar">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span> 
+                                        </button>
+                                        <img class="responsiv-img" src="../resources/images/logo.jpg" style="width: 50px"/>
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="myNavbar">
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="adminHome.xhtml"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                                            <li><a href="salesReport.xhtml">Sales Report</a></li>
+                                            <li><a href="purchaseReport.xhtml">Purchase Report</a></li> 
+                                            <li><a href="addNewProductReport.xhtml">Add Product Report</a></li> 
+                                            <li><a href="employeeInfo.xhtml">Employee Info</a></li> 
+                                        </ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="addEmployee.xhtml"><span class="glyphicon glyphicon-user"></span>Employee Registration</a></li>
+                                            <li><a href="index.xhtml"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </ui:insert>
+                </div>
+            </div>
+            <!-- start menue secation-->
+
+
+
+            <!-- start content  secation-->
+            <div class="row" id="mr" style="background-color:lightblue">
+                <div class="col-md-12">
+                    <h2 align="center" style="color:green">Add New Product Report</h2><hr/>
+                    <h:form>
+                        <p:inputText type="date" value="#{productBean.pDate}"/>
+                        <!--<h:inputText value="#{productBean.pDate}"/>-->
+                        <h:commandButton action="#{productBean.addNewProductReport()}" value="Search"/>
+                    </h:form>
+                    <table class="table table-info">
+                        <tr>
+                            <th>Product ID  </th>
+                            <th>Name  </th>
+                            <th>Model  </th>
+                            <th>Color </th>
+                            <th>Quantity  </th>
+                            <th>Price  </th>
+                            <th>Status  </th>
+                        </tr>
+                        <c:forEach var="p" items="#{productBean.addNewProductReport()}">
+                            <tr>
+                                <td><h:outputText value="#{p.id}"/></td>
+                                <td><h:outputText value="#{p.name}"/></td>
+                                <td><h:outputText value="#{p.model}"/></td>
+                                <td><h:outputText value="#{p.color}"/></td>
+                                <td><h:outputText value="#{p.qty}"/></td>
+                                <td><h:outputText value="#{p.price}"/></td>
+                                <td><h:outputText value="#{p.status}"/></td>
+                            </tr>
+                        </c:forEach>
+                        <tr>
+                            <th>  </th>
+                            <th>  </th>
+                            <th>  </th>
+                            <th>Total</th>
+                            <th><h:outputText value="#{productBean.sumq}"/>  </th>
+                            <th><h:outputText value="#{productBean.sump}"/></th>
+                            <th></th>
+                        </tr>
+                        
+                    </table>
+
+
+                </div>
+
+            </div>
+            <!-- end content  secation--> 
+            <div class="row" id="footer" style="background-color: #31b0d5">
+                <div class="col-md-1 footer">
+
+                </div>
+                <div class="col-md-6 footer">
+                    <ui:insert name="footer">
+                        <h:outputText value="Md: Abdul Alim"></h:outputText><br/>
+                        <h:outputText value="Student of IDB-BISEW"></h:outputText><br/>
+                        <h:outputText value="New Horizon Computer Learning Center"></h:outputText><br/>
+                        <h:outputText value="Dhanmondi, Dhaka"></h:outputText>
+                    </ui:insert>
+                </div>
+                <div class="col-md-4 footer">
+                    <ui:insert name="footer">
+                        <h:outputText value="Contact Informetion"></h:outputText><br/>
+                        <h:outputText value="Email: w3alim@gmail.com"></h:outputText><br/>
+                        <h:outputText value="Phone: +880 1705-768898"></h:outputText><br/>
+                        <h:outputText value="Skype: adoralim1"></h:outputText>
+                    </ui:insert>
+                </div>
+            </div>
+        </div>
+
+    </h:body>
+</html>

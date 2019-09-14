@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <h:outputStylesheet  name="./css/bootstrap.min_1.css"/>
+        <h:outputStylesheet  name="./css/font-awesome.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
+        <h:outputStylesheet  name="./css/style.css"/>
+    </h:head>
+
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 header">
+                    <ui:insert name="header">
+                        <div class="row">
+                            <img class="responsiv-img" src="../resources/images/carasol1.jpg" style="width: 100%"/>
+                        </div>
+                    </ui:insert>
+                </div>
+            </div>
+            <!-- start menue secation-->
+            <div class="row">
+                <div class="col-md-12 menue">
+                    <ui:insert name="menue">
+                        <div class="row">
+                            <nav class="navbar">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span> 
+                                        </button>
+                                        <img class="responsiv-img" src="../resources/images/logo.jpg" style="width: 50px"/>
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="myNavbar">
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="home.xhtml"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                                            <li><a href="purchase.xhtml">Add New Product</a></li>
+                                            <li><a href="addPurchase.xhtml">Purchase</a></li> 
+                                            <li><a href="sales.xhtml">Sales</a></li> 
+                                            
+                                        </ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li><a href="index.xhtml"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </ui:insert>
+                </div>
+            </div>
+            <!-- start menue secation-->
+
+
+
+            <!-- start content  secation-->
+            <div class="row" id="mr" style="background-color:lightblue">
+                <div class="col-md-8">
+                    <h2 align="center" style="color:green">Products list</h2><hr/>
+                    <table class="table table-info">
+                        <tr>
+                            <th>Name  </th>
+                            <th>Model  </th>
+                            <th>Color </th>
+                            <th>Quantity  </th>
+                            <th>Price  </th>
+                            <th>Add to sale </th>
+                        </tr>
+                        <c:forEach var="p" items="#{productBean.showProductsList()}">
+                            <tr>
+                                <td><h:outputText value="#{p.name}"/></td>
+                                <td><h:outputText value="#{p.model}"/></td>
+                                <td><h:outputText value="#{p.color}"/></td>
+                                <td><h:outputText value="#{p.qty}"/></td>
+                                <td><h:outputText value="#{p.price}"/></td>
+                                <h:form>
+                                    <td><h:commandButton action="#{productBean.showProduct(p)}" value="Add Purchase"/></td>
+                                </h:form>
+                            </tr>
+                        </c:forEach>
+                        <tr>
+                            <th>  </th>
+                            <th>  </th>
+                            <th>Total </th>
+                            <th><h:outputText value="#{productBean.sumq}"/>  </th>
+                            <th><h:outputText value="#{productBean.sump}"/></th>
+                            <th></th>
+                        </tr>
+                    </table>
+
+
+                </div>
+                <div class="col-md-4">
+                    <h:form>
+                        <h2 align="center" style="color:green">Show Purchase Details</h2>
+                        <table class="table table-info"> 
+                            <tr>
+                                <td>Name</td>
+                                <td><h:outputText value="#{productBean.products.name}" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <td>Model </td>
+                                <td><h:outputText value="#{productBean.products.model}" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <td>Color </td>
+                                <td><h:outputText value="#{productBean.products.color}" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <td>Price </td>
+                                <td><h:outputText value="#{productBean.products.price}" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <td>Avaiable Quantity </td>
+                                <td><h:outputText value="#{productBean.products.qty}" class="form-control"/></td>
+                            </tr>
+                            
+                            <tr>
+                                <td>Purchase Quantity </td>
+                                <td><h:inputText value="#{productBean.sqty}" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <td>Purchase Date </td>
+                                <td><h:outputText value="#{productBean.date}" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><h:commandButton action="#{productBean.addPurchase()}" value="Add Confirm" class="form-control" style="background-color:green; color: white"/></td>
+                            </tr>
+                        </table>
+                    </h:form>
+                </div>
+            </div>
+            <!-- end content  secation--> 
+            <div class="row" id="footer" style="background-color: #31b0d5">
+                <div class="col-md-1 footer">
+
+                </div>
+                <div class="col-md-6 footer">
+                    <ui:insert name="footer">
+                        <h:outputText value="Md: Abdul Alim"></h:outputText><br/>
+                        <h:outputText value="Student of IDB-BISEW"></h:outputText><br/>
+                        <h:outputText value="New Horizon Computer Learning Center"></h:outputText><br/>
+                        <h:outputText value="Dhanmondi, Dhaka"></h:outputText>
+                    </ui:insert>
+                </div>
+                <div class="col-md-4 footer">
+                    <ui:insert name="footer">
+                        <h:outputText value="Contact Informetion"></h:outputText><br/>
+                        <h:outputText value="Email: w3alim@gmail.com"></h:outputText><br/>
+                        <h:outputText value="Phone: +880 1705-768898"></h:outputText><br/>
+                        <h:outputText value="Skype: adoralim1"></h:outputText>
+                    </ui:insert>
+                </div>
+            </div>
+        </div>
+
+    </h:body>
+</html>
